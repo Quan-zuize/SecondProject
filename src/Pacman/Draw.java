@@ -45,6 +45,20 @@ public class Draw extends Board {
         timer.start();
         player_id = id;
     }
+    
+    public void playGame(Graphics2D g2d) {
+        if (dying) {
+            isDeath();
+        } else {
+            movePacman();
+            drawPacman(g2d);
+            moveGhosts(g2d);
+            checkMaze();
+//            if(finished){
+//                wingame(g2d);
+//            }
+        }
+    }
 
     @Override
     public void isDeath() {
@@ -132,15 +146,17 @@ public class Draw extends Board {
 
     public void drawScore(Graphics2D g) {
         int i;
-        String s;
+        String s,l;
 
         g.setFont(smallfont);
         g.setColor(new Color(96, 128, 255));
         s = "Score: " + score;
-        g.drawString(s, scrsize / 2 + 96, scrsize + 16);
+        g.drawString(s, scrsize / 2 + 300, scrsize + 16);
         for (i = 0; i < pacsleft; i++) {
             g.drawImage(pacman3left, i * 28 + 8, scrsize + 1, this);
         }
+        l = "Level "+level;
+        g.drawString(l, scrsize / 2 + 230, scrsize + 16);
     }
 
     public void doAnimation() {
@@ -236,7 +252,6 @@ public class Draw extends Board {
     }
 
     public void showIntroScreen(Graphics2D g2d) {
-
         g2d.setColor(new Color(0, 32, 48));
         g2d.fillRect(50, scrsize / 2 - 30, scrsize - 100, 50);
         g2d.setColor(Color.white);
@@ -250,6 +265,7 @@ public class Draw extends Board {
         g2d.setFont(small);
         g2d.drawString(s, (scrsize - metr.stringWidth(s)) / 2, scrsize / 2);
     }
+
 
     public void addNotify() {
         super.addNotify();
@@ -283,6 +299,21 @@ public class Draw extends Board {
         currentspeed = 3;
         startTime = System.currentTimeMillis();
     }
+    
+//    public void wingame(Graphics2D g2d){
+//        g2d.setColor(new Color(0, 32, 48));
+//        g2d.fillRect(50, scrsize / 2 - 30, scrsize - 100, 50);
+//        g2d.setColor(Color.white);
+//        g2d.drawRect(50, scrsize / 2 - 30, scrsize - 100, 50);
+//
+//        String s = "Press S to continue.";
+//        Font small = new Font("Cambria", Font.BOLD, 14);
+//        FontMetrics metr = this.getFontMetrics(small);
+//
+//        g2d.setColor(Color.white);
+//        g2d.setFont(small);
+//        g2d.drawString(s, (scrsize - metr.stringWidth(s)) / 2, scrsize / 2);
+//    }
 
     class TAdapter extends KeyAdapter {
 

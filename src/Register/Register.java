@@ -83,8 +83,9 @@ public class Register extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,6 +115,7 @@ public class Register extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Project\\src\\Register\\154751298_262059552045795_1344398970444976006_n.png")); // NOI18N
         jButton2.setText("Register");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,7 +123,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(360, 760, 160, 40);
+        jButton2.setBounds(360, 780, 160, 40);
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 255, 255));
@@ -131,6 +133,7 @@ public class Register extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 0));
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Project\\src\\Register\\login.PNG")); // NOI18N
         jButton3.setText("Login now");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,7 +141,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(590, 760, 160, 40);
+        jButton3.setBounds(600, 780, 160, 40);
 
         jTextField4.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, new java.awt.Color(102, 102, 102), null));
@@ -202,19 +205,21 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jPasswordField2);
         jPasswordField2.setBounds(110, 340, 310, 40);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        jButton1.setText("Browse");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(110, 500, 120, 45);
-
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         getContentPane().add(jLabel7);
         jLabel7.setBounds(320, 390, 480, 360);
+
+        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Project\\src\\Register\\add-512.png")); // NOI18N
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(120, 510, 80, 80);
+
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(120, 510, 80, 80);
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Project\\src\\Register\\biw-game-arcade_hero.png")); // NOI18N
         getContentPane().add(jLabel4);
@@ -388,19 +393,19 @@ public class Register extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPasswordField1KeyPressed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         JFileChooser j = new JFileChooser();
         j.setLocation(0, 0);
         j.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
-        int result = j.showSaveDialog(null);
+        int result = j.showSaveDialog(null); 
         if (result == JFileChooser.APPROVE_OPTION) {
             selectedFile = j.getSelectedFile();
             selectedPath = selectedFile.getAbsolutePath();
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(selectedPath).getImage().getScaledInstance(jLabel7.getWidth(), jLabel7.getHeight(), Image.SCALE_DEFAULT));
             jLabel7.setIcon(imageIcon);
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -432,10 +437,11 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

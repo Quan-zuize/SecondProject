@@ -8,6 +8,7 @@ package SignIn;
 import Home.home;
 import Pacman.Player;
 import Register.Register;
+import ResetPass.Forgot_password;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.math.BigInteger;
@@ -71,6 +72,7 @@ public class SignIn extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,6 +152,17 @@ public class SignIn extends javax.swing.JFrame {
         jLabel1.setText("Your user name");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(50, 100, 170, 30);
+
+        jLabel2.setFont(new java.awt.Font("Corbel", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Quên mật khẩu?");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(50, 300, 100, 17);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(380, 170, 450, 490);
@@ -231,6 +244,12 @@ public class SignIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        Forgot_password fp = new Forgot_password();
+        fp.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -264,6 +283,7 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

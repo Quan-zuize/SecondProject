@@ -10,14 +10,18 @@ package Pacman;
  * @author nguye
  */
 public class PlaySound implements Runnable {
-
+    static String audio;
+    public PlaySound(String audio){
+        PlaySound.audio = audio;
+    }
+    
+    @Override
     public void run() {
         startSound();
     }
 
     public static void startSound() {
-        // new SpaceInvaders();
         MusicPlayer player = new MusicPlayer();
-        player.play("audio.wav");
+        player.play(audio);
     }
 }

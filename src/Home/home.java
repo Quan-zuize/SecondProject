@@ -6,19 +6,21 @@
 package Home;
 
 import Pacman.PacMan;
+import Pacman.PlaySound;
 import Pacman.Player;
 import Rank.Rank;
 import Register.Register;
 import SignIn.SignIn;
 import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
 
 /**
  *
@@ -31,6 +33,8 @@ public final class home extends javax.swing.JFrame {
      */
     int id;
     boolean music = true;
+    boolean mouse = true;
+
     String status = "Enabled sound";
 
     public home() {
@@ -65,13 +69,18 @@ public final class home extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
@@ -123,17 +132,6 @@ public final class home extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(1030, 10, 54, 58);
 
-        jButton4.setBackground(new java.awt.Color(153, 153, 255));
-        jButton4.setFont(new java.awt.Font("Ebrima", 1, 28)); // NOI18N
-        jButton4.setText("PLAY");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(650, 630, 200, 53);
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Home/137322576_234040788097888_1351706914099467358_n.jpg"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,15 +159,26 @@ public final class home extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(1030, 200, 60, 65);
 
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Project\\src\\Home\\pngtree-game-button-switch-start-game-icon-png-image_2137850.jpg")); // NOI18N
+        jButton3.setText("PLAY");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(650, 630, 200, 50);
+
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\Project\\src\\Home\\PAC_MAN_NEON_SIGN_1024x1024.jpg")); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(1, -4, 1120, 810);
+        jLabel4.setBounds(0, 0, 1120, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        playmusic();
         Register r = new Register();
         r.setVisible(true);
         this.setVisible(false);
@@ -180,41 +189,68 @@ public final class home extends javax.swing.JFrame {
         JLabel headerLabel;
 
         mainFrame = new JFrame("Setting");
-        mainFrame.setSize(400, 200);
-        mainFrame.setLayout(new GridLayout(3, 1));
-        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setSize(400, 275);
+        mainFrame.setLayout(new FlowLayout());
 
         headerLabel = new JLabel("", JLabel.CENTER);
-        headerLabel.setText("Turn on/off for sound game");
+        headerLabel.setText("Setting game sound");
+        Font font = new Font("SansSerif", Font.BOLD, 32);
+        headerLabel.setFont(font);
 
-        JButton okButton = new JButton("Enabled sound");
-        okButton.addActionListener((ActionEvent e) -> {
-            if (okButton.getText().equals("Enabled sound")) {
-                okButton.setText("Disabled sound");
+        JButton background = new JButton("unmute");
+        ImageIcon anh1 = new ImageIcon("src/Home/158043267_1062220314288418_8069669939015668546_n.jpg");
+        ImageIcon anh2 = new ImageIcon("src/Home/158653123_468382224201915_2997143686939429361_n.jpg");
+        ImageIcon anh3 = new ImageIcon("src/Home/158330622_760491014875458_5195846703200841263_n.jpg");
+        ImageIcon anh4 = new ImageIcon("src/Home/158797619_439006387353652_788866575752782419_n.jpg");
+
+        background.setPreferredSize(new Dimension(100, 100));
+        background.addActionListener((ActionEvent e) -> {
+            if (background.getText().equals("unmute")) {
+                music = false;
+                background.setText("mute");
+                background.setIcon(anh2);
             } else {
-                okButton.setText("Enabled sound");
+                music = true;
+                background.setText("unmute");
+                background.setIcon(anh1);
             }
         });
-        JButton exit = new JButton("Go back");
-        exit.addActionListener((ActionEvent e) -> {
-            status = okButton.getText();
-            if (status.equals("Disabled sound")) {
-                music = false;
-            } 
+
+        JLabel nothing = new JLabel();
+        nothing.setPreferredSize(new Dimension(50, 100));
+
+        JButton ingame = new JButton("unmute");
+        ingame.setPreferredSize(new Dimension(100, 100));
+        ingame.addActionListener((ActionEvent e) -> {
+            if (ingame.getText().equals("unmute")) {
+                mouse = false;
+                ingame.setText("mute");
+                ingame.setIcon(anh4);
+            } else {
+                mouse = true;
+                ingame.setText("unmute");
+                ingame.setIcon(anh3);
+            }
+        });
+
+        JButton back = new JButton("Back");
+        back.setPreferredSize(new Dimension(150, 50));
+        back.addActionListener((ActionEvent e) -> {
             mainFrame.dispose();
-            System.out.println(status);
         });
 
         mainFrame.add(headerLabel);
-        mainFrame.add(okButton);
-        mainFrame.add(exit);
+        mainFrame.add(background);
+        mainFrame.add(nothing);
+        mainFrame.add(ingame);
+        mainFrame.add(back);
+        mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        mainFrame.setLocation(dim.width / 2 - mainFrame.getSize().width / 2, dim.height / 2 - mainFrame.getSize().height / 2);
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        playmusic();
         JOptionPane.showMessageDialog(this, "Bạn dã đăng xuất");
         SignIn s = new SignIn();
         s.setVisible(true);
@@ -223,12 +259,13 @@ public final class home extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
+        playmusic();
         jPanel1.setVisible(true);
-        
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
+        playmusic();
         if (jPanel1.isVisible() == false) {
             JFrame frame = new JFrame();
             int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to close the game?", "Please Confirm", JOptionPane.YES_NO_OPTION);
@@ -242,26 +279,37 @@ public final class home extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
+        playmusic();
         Rank r = new Rank(id);
         r.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel6MouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        // TODO add your handling code here:
-        new PacMan(id, music).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton4MouseClicked
-
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-//        JFrame frame = new JFrame();
-//        int result = JOptionPane.showConfirmDialog(frame, "Are you sure you want to enable game sound?", "Please Confirm", JOptionPane.YES_NO_OPTION);
-//        if (result == JOptionPane.NO_OPTION) {
-//            music = false;
-//        }
+        playmusic();
         showJFrameDemo();
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        playmusic();
+        new PacMan(id, music).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        playmusic();
+    }//GEN-LAST:event_formMouseClicked
+
+    public void playmusic() {
+        if (mouse) {
+            PlaySound playsound = new PlaySound("mixkit-modern-technology-select-3124.wav");
+            Thread t = new Thread(playsound);
+            t.start();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -295,7 +343,7 @@ public final class home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

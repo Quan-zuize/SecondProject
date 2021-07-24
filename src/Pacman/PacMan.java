@@ -12,10 +12,10 @@ public class PacMan extends JFrame {
         add(new Draw(id));
         setTitle("Pacman");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(380, 440);
+        setSize(882, 940);
         setLocationRelativeTo(null);
         if (music) {
-            PlaySound playsound = new PlaySound();
+            PlaySound playsound = new PlaySound("gamemusic.wav");
             Thread t = new Thread(playsound);
             t.start();
         }
